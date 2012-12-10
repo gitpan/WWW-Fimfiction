@@ -13,7 +13,7 @@ use WWW::Fimfiction::User;
 use WWW::Fimfiction::Chapter;
 
 our @EXPORT_OK = ('story');
-our $VERSION = 'v0.2.0';
+our $VERSION = 'v0.2.1';
 
 my $ua = LWP::UserAgent->new( timeout => 10 );
 $ua->agent(__PACKAGE__ . ' ');

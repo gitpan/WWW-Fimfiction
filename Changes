@@ -1,6 +1,11 @@
 Revision history for WWW-Fimfiction
 ===================================
 
+v0.2.1 - 10 Dec 16:54 +1030
+---------------------------
+
+- Fixed test to consider the site's new URL scheme
+
 v0.2.0 - 10 Dec 14:30 +1030
 ---------------------------
 
