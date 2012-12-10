@@ -17,4 +17,7 @@ eval "use Pod::Coverage $min_pc";
 plan skip_all => "Pod::Coverage $min_pc required for testing POD coverage"
     if $@;
 
-all_pod_coverage_ok();
+# Skip helper modules
+my @modules = grep { !/::_/ } all_modules();
+plan tests => scalar @modules;
+pod_coverage_ok( $_, {}, "Pod coverage on $_" ) for @modules;

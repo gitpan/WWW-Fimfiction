@@ -7,13 +7,13 @@ use base 'Exporter';
 use LWP::UserAgent;
 use Carp 'croak';
 use JSON 'decode_json';
-use WWW::Fimfiction::Types;
+use WWW::Fimfiction::_types;
 use WWW::Fimfiction::Story;
 use WWW::Fimfiction::User;
 use WWW::Fimfiction::Chapter;
 
 our @EXPORT_OK = ('story');
-our $VERSION = 'v0.1.4';
+our $VERSION = 'v0.2.0';
 
 my $ua = LWP::UserAgent->new( timeout => 10 );
 $ua->agent(__PACKAGE__ . ' ');
@@ -86,13 +86,19 @@ sub story {
 	}
 }
 
+=head1 SEE ALSO
+
+L<WWW::Fimfiction::Story>,
+L<WWW::Fimfiction::User>,
+L<WWW::Fimfiction::Chapter>
+
 =head1 AUTHOR
 
 Cameron Thornton E<lt>cthor@cpan.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2012 Cameron Thornton.
+Copyright (c) 2012 Cameron Thornton.
 
 This program is free software; you can redistribute it and/or 
 modify it under the same terms as Perl itself.

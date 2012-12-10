@@ -5,7 +5,11 @@ use warnings FATAL => 'all';
 use Test::More;
 use WWW::Fimfiction 'story';
 
-my $story = story(6762);
+my $story = eval{ story(6762) };
+
+if($@ =~ /^Error: 503 Service Unavailable/) {
+	plan skip_all => 'Fimfiction service currently unavailable';
+}
 
 is(
 	$story->id, 

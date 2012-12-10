@@ -1,9 +1,13 @@
 Revision history for WWW-Fimfiction
 ===================================
 
-0.01
-----
+v0.2.0 - 10 Dec 14:30 +1030
+---------------------------
 
-### 8 Dec 03:23 +1030
+- Documented accessors in ::Story, ::User, and ::Chapter
+- Made `01-story.t` skip if Fimfiction 503's
 
-First released with working `story()` function
+v0.1.0 - 8 Dec 03:23 +1030
+------------------------
+
+- First released with working `story()` function
