@@ -1,4 +1,4 @@
-use 5.006;
+use 5.014;
 use strict;
 use warnings FATAL => 'all';
 use inc::Module::Install;
@@ -8,13 +8,14 @@ all_from 'lib/WWW/Fimfiction.pm';
 
 test_requires 'Test::More' => 0;
 
-requires 'LWP::UserAgent' => 0;
-requires 'Exporter' => 0;
-requires 'DateTime' => 0;
-requires 'Moose' => 0;
-requires 'JSON' => 0;
-requires 'Carp' => 0;
-requires 'URI' => 0;
+requires (
+	'HTML::TreeBuilder' => 0,
+	'LWP::UserAgent' => 0,
+	'HTTP::Cookies' => 0,
+	'XML::Twig' => 0,
+	'JSON' => 0,
+	'Carp' => 0,
+);
 
 recommends 'JSON::XS';
 

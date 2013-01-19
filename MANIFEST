@@ -8,10 +8,6 @@ inc/Module/Install/Metadata.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
 lib/WWW/Fimfiction.pm
-lib/WWW/Fimfiction/_types.pm
-lib/WWW/Fimfiction/Chapter.pm
-lib/WWW/Fimfiction/Story.pm
-lib/WWW/Fimfiction/User.pm
 Makefile.PL
 MANIFEST
 META.yml
