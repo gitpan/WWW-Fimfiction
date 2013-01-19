@@ -31,4 +31,4 @@ requires:
   perl: 5.14.0
 resources:
   license: http://dev.perl.org/licenses/
-version: v0.3.5
+version: v0.3.7

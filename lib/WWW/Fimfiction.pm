@@ -10,7 +10,7 @@ use XML::Twig;
 use Carp 'croak';
 use JSON 'decode_json';
 
-our $VERSION = 'v0.3.5';
+our $VERSION = 'v0.3.7';
 
 =head1 NAME
 
@@ -33,6 +33,9 @@ WWW::Fimfiction - CRUD tasks for fimfiction.net
 Methods without explicit return values will return the WWW::Fimfiction object. Methods
 will croak if something goes wrong.
 
+Bear in mind that the site doesn't take kindly to request spam, so consecutive calls
+will have a small delay placed between them so the server doesn't get angry with you.
+
 =head2 new
 
 Makes a new object.
@@ -45,7 +48,7 @@ sub new {
 	my $ua = LWP::UserAgent->new( cookie_jar => HTTP::Cookies->new );
 	$ua->agent("WWW-Fimfiction/$VERSION ");
 
-	return bless { ua => $ua }, $class;
+	return bless { ua => $ua, last_request => 0 }, $class;
 }
 
 sub _ua {
@@ -63,9 +66,15 @@ sub _assert_auth {
 sub _post {
 	my $self = shift;
 
+	# Fimfiction will return an error if you try and spam requests,
+	# so sleep for a little if there's multiple requests
+	my $phase = $self->{last_request} + 2 - time;
+	sleep($phase) if $phase > 0;
+
 	my $res = $self->_ua->post(@_);
 
 	if( $res->is_success ) {
+		$self->{last_request} = time;
 		return $res;
 	}
 	else {
@@ -174,14 +183,10 @@ sub edit_chapter {
 
 	my $res = $self->_post('http://www.fimfiction.net/ajax/modify_chapter.php', $form);
 
-	my $elt = XML::Twig::Elt->parse($res->decoded_content);
-
-	if( my $error = $elt->field('error') ) {
-		croak $error;
-	}
-	else {
-		return $self;
-	}
+	# Reading the XML output here sometimes results in an unexpected error because Fimfiction spits
+	# out what XML::Twig considers invalid markup. The data isn't necessary except to check for
+	# error messages, so we'll just not bother.
+	return $self;
 }
 
 =head2 publish_chapter
