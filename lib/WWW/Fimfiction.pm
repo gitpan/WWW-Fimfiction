@@ -10,7 +10,7 @@ use XML::Twig;
 use Carp 'croak';
 use JSON 'decode_json';
 
-our $VERSION = 'v0.3.0';
+our $VERSION = 'v0.3.5';
 
 =head1 NAME
 
@@ -116,7 +116,7 @@ sub login {
 		croak 'Invalid username';
 	}
 	else {
-		croak 'Error: $code';
+		croak "Bad credentials";
 	}
 }
 
@@ -188,7 +188,7 @@ sub edit_chapter {
 
 Args: ($id)
 
-Toggles the publish status of a chapter. Returns 1 or 0 indicating the chapter's publish status.
+Toggles the publish status of a chapter. Returns 1 or 0 indicating the chapter's new publish status.
 
 =cut
 
@@ -245,6 +245,8 @@ sub delete_chapter {
 }
 
 =head2 get_story
+
+Args: ($id)
 
 Returns a hash ref of story metadata.
 

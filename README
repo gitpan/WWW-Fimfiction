@@ -6,7 +6,7 @@ fimfiction.net.
 
 INSTALLATION
 
-	WWW-Fimfiction$ perl Makefile.PL && make test && make install
+    WWW-Fimfiction$ perl Makefile.PL && make && make test && make install
 
 SUPPORT AND DOCUMENTATION
 
